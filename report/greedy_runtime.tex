@@ -1,0 +1,109 @@
+\subsection{Running-Time Analysis}
+
+The greedy traffic signal scheduling algorithm
+consists of two main operations: sorting the
+candidate green-light windows and selecting
+a maximum set of compatible windows.
+
+\subsubsection{Theoretical Analysis}
+
+Let $n$ represent the number of candidate
+green-light windows.
+
+The algorithm first sorts all windows by their
+finishing times using the C++ standard library
+sorting function.
+
+The sorting operation requires
+$O(n\log n)$ time.
+
+After sorting, the algorithm examines each window
+exactly once. If a window starts at or after the
+finishing time of the previously selected window,
+it is added to the selected set.
+
+Each compatibility check requires $O(1)$ time,
+and the selection loop requires $O(n)$ time.
+
+The C++ standard library sorting function provides
+$O(n\log n)$ comparison complexity
+\cite{cppreferenceSort}.
+
+The total running time is therefore:
+
+\[
+T(n) = O(n\log n) + O(n)
+\]
+
+Since sorting dominates the running time,
+
+\[
+\boxed{T(n) = O(n\log n)}
+\]
+
+\subsubsection{Experimental Verification}
+
+To verify the theoretical running-time analysis,
+the algorithm was implemented in C++ and tested
+using randomly generated green-light windows.
+
+Seven input sizes were tested, ranging from
+1,000 to 200,000 candidate windows.
+
+For each input size, the algorithm was executed
+10 times, and the median execution time was
+recorded in milliseconds.
+
+The experiments used the C++ chrono library
+with the steady clock to measure execution time.
+
+Random input generation was excluded from
+the timed portion of each experiment.
+
+The program was compiled using the
+\texttt{-O2} optimization flag.
+
+\begin{table}[htbp]
+\centering
+\caption{Experimental Running-Time Results}
+\label{tab:greedy-runtime}
+\begin{tabular}{|r|r|}
+\hline
+Input Size ($n$) & Median Time (ms) \\
+\hline
+1,000 & 0.03560 \\
+5,000 & 0.19195 \\
+10,000 & 0.43350 \\
+25,000 & 1.10480 \\
+50,000 & 2.36325 \\
+100,000 & 4.75960 \\
+200,000 & 10.90790 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Experimental Graph}
+
+Figure~\ref{fig:greedy-runtime} compares
+the measured execution times against a
+scaled theoretical $O(n\log n)$ curve.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{runtime_graph.png}
+\caption{Measured median execution time
+compared with scaled $O(n\log n)$ growth.}
+\label{fig:greedy-runtime}
+\end{figure}
+
+The measured execution times increase as
+the number of candidate windows increases.
+
+The experimental results follow a growth
+pattern consistent with the theoretical
+$O(n\log n)$ running-time analysis.
+
+Although individual measurements can vary
+due to system activity and hardware effects,
+the overall results support the expected
+asymptotic complexity.

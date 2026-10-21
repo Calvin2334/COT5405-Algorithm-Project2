@@ -1,0 +1,90 @@
+
+\documentclass[conference]{IEEEtran}
+
+% Required packages
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{fontspec}
+\usepackage{fvextra}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Source code formatting
+\lstset{
+    basicstyle=\ttfamily\scriptsize,
+    breaklines=true,
+    breakatwhitespace=false,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=4pt,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true
+}
+
+% Report title
+\title{Applications of Greedy and
+Divide-and-Conquer Algorithms}
+
+\author{
+    \IEEEauthorblockN{Group Project}
+}
+
+\begin{document}
+
+\maketitle
+
+% Introduction
+\section{Introduction}
+
+This report examines the application of
+greedy and divide-and-conquer algorithms
+to real-world computational problems.
+
+% =====================================
+% GREEDY ALGORITHM
+% =====================================
+
+\section{Greedy Algorithm:
+Traffic Signal Scheduling}
+
+\input{greedy_problem}
+\input{greedy_algorithm}
+\input{greedy_proof}
+\input{greedy_runtime}
+
+% =====================================
+% DIVIDE AND CONQUER
+% =====================================
+
+% Teammate's section will be added later.
+
+% =====================================
+% REFERENCES
+% =====================================
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+% =====================================
+% APPENDICES
+% =====================================
+
+\appendices
+
+% Greedy algorithm and experiment code
+\input{greedy_code_appendix}
+
+% AI disclosure
+\input{ai_usage_appendix}
+
+% Complete original ChatGPT conversation
+\input{original_ai_development_appendix}
+
+% Seven revised AI interactions
+\input{revised_ai_interactions}
+
+\end{document}

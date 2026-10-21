@@ -1,0 +1,202 @@
+\section{AI Tool Usage and Disclosure}
+
+\subsection{AI Tool Used}
+
+OpenAI ChatGPT was used during the development,
+testing, mathematical analysis, and documentation
+of the greedy traffic signal scheduling algorithm.
+
+AI assistance included problem formulation,
+algorithm explanations, C++ code generation
+and revisions, debugging, experimental
+benchmarking, graph generation, correctness
+proofs, and LaTeX report preparation.
+
+The following subsections summarize selected
+original development interactions. These
+summaries are not substitutes for the complete
+conversation transcripts.
+
+\subsection{Development and Verification}
+
+ChatGPT assisted with algorithm design, code
+revisions, debugging, and report preparation.
+
+During debugging, complete updated code was
+sometimes requested so that suggested corrections
+could be applied consistently instead of making
+individual line-by-line edits.
+
+The C++ implementation was compiled and tested.
+Runtime experiments were executed, and the
+recorded measurements were used to generate
+the experimental graph.
+
+The project models maximum-cardinality interval
+scheduling using preapproved green-light windows.
+It does not claim to minimize actual traffic
+congestion or vehicle waiting times.
+
+\subsection{Problem Selection and Abstraction}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+what if i change it to the max amount of time
+you can have lights running at the same time
+to avoid cloging traffic
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT discussed traffic signal coordination
+and suggested modeling the problem as
+maximum-cardinality interval scheduling.
+
+The objective was to select the maximum number
+of mutually compatible green-light windows,
+not to directly minimize traffic congestion.
+
+\subsection{Greedy Algorithm Implementation}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+okay lets se
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT explained the earliest-finish-time
+greedy algorithm and provided C++ implementation
+assistance.
+
+The algorithm sorts candidate windows by
+finishing time and selects windows that do not
+overlap previously selected windows.
+
+\subsection{Code Review and Debugging}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+before i push it chekc my code correct what
+needs to be correctedso i know im pushing
+the full correct file
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT reviewed the C++ implementation,
+identified possible corrections, and provided
+suggestions for initialization, output formatting,
+and code organization.
+
+\subsection{Experimental Runtime Analysis}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+give me the whole code
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT provided a complete C++ benchmarking
+program for generating random candidate windows
+and measuring the greedy algorithm's running time.
+
+Seven input sizes from 1,000 to 200,000 windows
+were tested. Each size used ten repetitions,
+and median execution times were recorded.
+
+The measurements were compared against
+the theoretical $O(n\log n)$ running time.
+
+\subsection{Experimental Graph Generation}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+so run this python Greedy/plot\_results.py
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT assisted with executing the Python
+plotting program, reading CSV data, correcting
+file and column naming issues, and generating
+the experimental runtime graph.
+
+\subsection{Correctness Proof}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+so show me exactly what i should write
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT provided a LaTeX correctness proof
+using the exchange-argument technique.
+
+The proof explains why selecting the
+earliest-finishing compatible window preserves
+an optimal solution and why the argument can
+be repeated for the remaining intervals.
+
+\subsection{LaTeX Report Assistance}
+
+\noindent\textbf{Original User Prompt:}
+
+\begin{quote}
+so write me the greedy\_runtime.text
+and i thought therw was an ai usage apendix
+\end{quote}
+
+\noindent\textbf{AI-Generated Result Summary:}
+
+ChatGPT assisted with runtime analysis,
+experimental results, graph inclusion,
+source-code listings, AI disclosure,
+and IEEE conference-style formatting.
+
+\subsection{Verification and Experimental Results}
+
+The greedy implementation was compiled
+and tested using the MSYS2 G++ compiler.
+
+The runtime experiment used the
+\texttt{-O2} compiler optimization flag.
+
+Seven input sizes were evaluated using
+ten timing measurements per input size.
+
+Median execution times were saved to CSV
+and visualized using Python and Matplotlib.
+
+The measured results were consistent with
+the theoretical $O(n\log n)$ running time.
+
+\subsection{Complete AI Interaction Record}
+
+The preceding subsections document selected
+original AI prompts and summarize their results.
+
+The complete original project-development
+conversation was recovered from the ChatGPT
+data export. It contains the original prompts,
+responses, intermediate code revisions,
+debugging discussions, and documentation
+assistance.
+
+The original conversation is reproduced
+in the following appendix.
+
+Seven additional revised AI interactions,
+including their prompts and responses,
+are reproduced in a separate appendix.
+
+OpenAI ChatGPT was the AI tool used for
+the greedy algorithm portion of this project.

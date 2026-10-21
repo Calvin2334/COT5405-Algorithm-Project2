@@ -1,0 +1,123 @@
+\subsection{Greedy Algorithm Design}
+
+The proposed algorithm uses the earliest-finish-time
+greedy strategy to select the maximum number of
+mutually compatible green-light windows.
+
+Each candidate window is represented by a starting
+time and a finishing time.
+
+The algorithm first sorts all candidate windows
+in ascending order of finishing time.
+
+It then processes each window and selects it
+if its starting time is greater than or equal
+to the finishing time of the previously
+selected window.
+
+Otherwise, the window is skipped.
+
+\subsubsection{Algorithm Pseudocode}
+
+\begin{verbatim}
+GREEDY-WINDOW-SCHEDULING(W)
+
+Input:
+    W = set of candidate green-light windows
+
+Output:
+    S = maximum set of compatible windows
+
+1. Sort W by ascending finishing time
+2. S = empty list
+3. lastFinish = -infinity
+
+4. For each window w in W:
+
+5.     If w.start >= lastFinish:
+
+6.         Add w to S
+
+7.         lastFinish = w.finish
+
+8. Return S
+\end{verbatim}
+
+\subsubsection{Greedy Choice}
+
+The greedy choice is to select the available
+compatible window with the earliest finishing time.
+
+This strategy is used because selecting a window
+that finishes earlier leaves at least as much
+time available for future windows as selecting
+one that finishes later.
+
+By repeating this selection process, the
+algorithm constructs a schedule containing
+the maximum number of compatible windows.
+
+The correctness of this strategy is established
+using an exchange argument in the proof of
+correctness section.
+
+\subsubsection{Explanation in the Traffic Signal Domain}
+
+In the context of traffic signal scheduling,
+the algorithm receives a collection of
+candidate green-light time windows.
+
+Each window represents a potential period
+during which a particular traffic movement
+could receive a green signal.
+
+The scheduling system first arranges these
+opportunities according to their ending times.
+
+The earliest-finishing opportunity is
+selected first.
+
+The system then considers the remaining
+opportunities and approves each one only
+if it does not overlap an already selected
+green-light window.
+
+For example, consider the following
+candidate windows:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Window & Start (s) & Finish (s) \\
+\hline
+1 & 0 & 10 \\
+2 & 2 & 5 \\
+3 & 5 & 8 \\
+4 & 7 & 12 \\
+5 & 8 & 14 \\
+\hline
+\end{tabular}
+\end{center}
+
+After sorting the windows by finishing
+time, the algorithm selects windows
+2, 3, and 5.
+
+Window 2 finishes at 5 seconds,
+window 3 begins at 5 seconds,
+and window 5 begins at 8 seconds
+when window 3 finishes.
+
+These windows are compatible because
+none of their time intervals overlap.
+
+The algorithm therefore selects three
+compatible green-light windows.
+
+This approach optimizes the number
+of selected candidate windows under
+the simplified scheduling model.
+
+It does not directly optimize vehicle
+throughput, signal safety, or traffic
+congestion across a real road network.

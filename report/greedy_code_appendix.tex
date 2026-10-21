@@ -1,0 +1,46 @@
+\section{Greedy Algorithm Experimental Source Code}
+
+This appendix contains the source code used to
+implement and experimentally verify the running
+time of the greedy green-light window scheduling
+algorithm.
+
+The implementation uses C++17 and was tested
+using the MSYS2 G++ compiler with the
+\texttt{-O2} optimization flag.
+
+\subsection{Greedy Algorithm Implementation}
+
+Listing~\ref{lst:greedy} contains the C++
+implementation of the scheduling algorithm.
+
+\lstinputlisting[
+    language=C++,
+    caption={Greedy scheduling implementation},
+    label={lst:greedy}
+]{code/greedy.cpp}
+
+\subsection{Experimental Runtime Measurement}
+
+Listing~\ref{lst:experiment} contains the C++
+code used to generate random intervals,
+measure execution times, and calculate
+median running times.
+
+\lstinputlisting[
+    language=C++,
+    caption={Experimental runtime benchmark},
+    label={lst:experiment}
+]{code/experiment.cpp}
+
+\subsection{Experimental Graph Generation}
+
+Listing~\ref{lst:plot} contains the Python
+code used to compare measured execution
+times with theoretical $O(n\log n)$ growth.
+
+\lstinputlisting[
+    language=Python,
+    caption={Python runtime graph generation},
+    label={lst:plot}
+]{code/plot_results.py}

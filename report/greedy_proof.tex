@@ -1,0 +1,55 @@
+\subsection{Proof of Correctness}
+
+\noindent\textbf{Theorem: Optimality of Greedy Green-Light Window Scheduling}
+
+Let $W = \{w_1, w_2, \ldots, w_n\}$ represent a set
+of candidate green-light windows. Each window
+$w_i$ has a starting time $s_i$ and finishing time
+$f_i$, where $s_i < f_i$.
+
+The earliest-finish-time greedy algorithm produces
+a maximum-cardinality subset of mutually compatible
+green-light windows.
+
+\medskip
+\noindent\textbf{Proof.}
+
+Let $g$ be the window with the earliest finishing
+time, and let $O = (o_1, o_2, \ldots, o_k)$ be an
+optimal schedule containing the maximum possible
+number of compatible windows.
+
+Since the greedy algorithm selects the window
+with the earliest finishing time,
+
+\[
+f(g) \leq f(o_1).
+\]
+
+We can replace $o_1$ with $g$ in the optimal
+schedule without reducing the number of
+selected windows.
+
+This replacement is valid because every
+subsequent window in $O$ starts at or after
+$f(o_1)$, which is greater than or equal to $f(g)$.
+
+Therefore, the modified schedule remains
+compatible and contains the same number
+of windows as the original optimal schedule.
+
+After selecting $g$, the algorithm considers
+only windows beginning at or after $f(g)$.
+
+The remaining problem has the same structure
+as the original scheduling problem.
+
+By repeatedly applying the same exchange argument
+to the remaining windows, every greedy choice
+can be included in an optimal schedule.
+
+Therefore, the earliest-finish-time greedy
+algorithm always produces a maximum-cardinality
+set of mutually compatible green-light windows.
+
+\hfill $\square$
