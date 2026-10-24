@@ -1,24 +1,186 @@
-% Complete original AI development transcript
 
 \clearpage
-\onecolumn
+\section{Selected Original AI Development Interactions}
 
-\section{Original AI Development Conversation}
+\noindent\textbf{AI Tool:} OpenAI ChatGPT
 
-This appendix contains the original ChatGPT
-project-development conversation recovered
-from the user's ChatGPT data export.
+This appendix presents ten selected interactions
+from the original project-development conversation.
+The questions were selected to document important
+decisions, technical questions, debugging, and
+verification during the greedy algorithm project.
 
-The conversation documents the original
-prompts, AI-generated responses, intermediate
-results, code development, debugging,
-experimental analysis, and report preparation.
+The responses below are concise summaries of the
+original AI-generated results, rather than verbatim
+reproductions of the complete responses.
 
-The transcript is reproduced from the
-original exported conversation.
+\subsection{Traffic Signal Problem Selection}
 
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{original_project_conversation_before_revisions.txt}
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+what if i change it to the max amount of time
+you can have lights running at the same time
+to avoid cloging traffic
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT discussed traffic signal coordination
+and proposed a simplified problem involving
+nonoverlapping green-light time windows.
+
+\subsection{Understanding the Greedy Objective}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+we want mutiple windos and by selecting one
+big one it doesnt match our greedy stratagy
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT explained why maximizing the number
+of compatible windows differs from selecting
+the window with the longest duration.
+
+\subsection{Understanding Sorting}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+so what we just did is sort the window sto
+get the correct windows or were doing that
+right nwo
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT explained the difference between
+sorting by finishing time and selecting
+compatible windows using the greedy rule.
+
+\subsection{Scheduling Accuracy}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+what if the timeings off it willl throw
+everythingoff
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT discussed scheduling assumptions,
+timing compatibility, and the limitations
+of applying this simplified algorithm
+to actual traffic signals.
+
+\subsection{Experimental Implementation}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+give me the whole code
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT provided implementation assistance
+for measuring the greedy algorithm's
+execution time using C++.
+
+\subsection{Benchmark Debugging}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+send me the updated experiment code so i
+can just paste itbecause imgetting errors
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT assisted with correcting the
+experimental benchmarking program,
+including runtime measurements and
+CSV result generation.
+
+\subsection{Experimental Graph}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+so run this python
+\texttt{Greedy/plot\_results.py}
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT assisted with executing the
+Python graph-generation script and
+visualizing measured execution times
+against theoretical growth.
+
+\subsection{Correctness Proof}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+so show me exactly what i should write
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT provided LaTeX assistance for
+the correctness proof, explaining the
+exchange argument that establishes
+the greedy algorithm's optimality.
+
+\subsection{Reviewing Project Progress}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+okay give me a recap on wat i justdid
+and a recap on what i did and need to
+do to complete this project
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT reviewed completed development
+work and identified remaining report,
+experimental, and documentation tasks.
+
+\subsection{AI Documentation Requirements}
+
+\noindent\textbf{User Prompt:}
+
+\begin{quote}
+okay so what am i missing for the ai
+part like how do i complete it
+\end{quote}
+
+\noindent\textbf{Result Summary:}
+
+ChatGPT explained the AI-disclosure
+requirements and discussed recording
+prompts, responses, and intermediate
+results in a LaTeX appendix.
+
+\subsection{Original Transcript Preservation}
+
+The preceding entries represent selected
+interactions from the original conversation.
+
+The complete original conversation,
+including all intermediate prompts,
+responses, code, and debugging records,
+is retained in the project repository
+as a separate text file.
+
+These summaries do not replace the full
+interaction records required by the
+assignment instructions.
