@@ -1,4 +1,4 @@
-
+% !TEX program = xelatex
 \documentclass[conference]{IEEEtran}
 
 % Required packages
@@ -10,6 +10,28 @@
 \usepackage{fvextra}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{newunicodechar}
+
+% Times-compatible main font and a monospace font with
+% box-drawing characters used in the AI transcripts
+\setmainfont{texgyretermes}[
+    Extension=.otf,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic
+]
+\setmonofont{DejaVuSansMono}[
+    Extension=.ttf,
+    BoldFont=*-Bold,
+    ItalicFont=*-Oblique,
+    BoldItalicFont=*-BoldOblique,
+    Scale=MatchLowercase
+]
+
+% Emoji in the transcripts that no installed font provides
+\newunicodechar{✅}{[OK]}
+\newunicodechar{❌}{[X]}
 
 % Source code formatting
 \lstset{
@@ -44,6 +66,13 @@ This report examines the application of
 greedy and divide-and-conquer algorithms
 to real-world computational problems.
 
+Both problems are drawn from traffic signal
+operations. The greedy section selects a maximum
+set of compatible green-light windows, and the
+divide-and-conquer section identifies the period
+of worst queue build-up on an intersection
+approach from detector counts.
+
 % =====================================
 % GREEDY ALGORITHM
 % =====================================
@@ -60,7 +89,13 @@ Traffic Signal Scheduling}
 % DIVIDE AND CONQUER
 % =====================================
 
-% Teammate's section will be added later.
+\section{Divide and Conquer:
+Worst Queue Build-Up at an Intersection}
+
+\input{dc_problem}
+\input{dc_algorithm}
+\input{dc_proof}
+\input{dc_runtime}
 
 % =====================================
 % REFERENCES
@@ -77,6 +112,9 @@ Traffic Signal Scheduling}
 
 % Greedy algorithm and experiment code
 \input{greedy_code_appendix}
+
+% Divide-and-conquer algorithm and experiment code
+\input{dc_code_appendix}
 
 % AI disclosure
 \input{ai_usage_appendix}

@@ -1,0 +1,56 @@
+\section{Divide-and-Conquer Experimental Source Code}
+
+This appendix contains the source code used to
+implement and experimentally verify the running
+time of the divide-and-conquer worst queue
+build-up algorithm.
+
+The implementation uses C++14 and was tested
+using the MinGW G++ compiler with the
+\texttt{-O2} optimization flag.
+
+\subsection{Divide-and-Conquer Implementation}
+
+Listing~\ref{lst:dc-header} contains the C++
+implementation of the algorithm, shared by the
+demonstration program and the benchmark.
+
+\lstinputlisting[
+    language=C++,
+    caption={Divide-and-conquer maximum subarray (max\_subarray.h)},
+    label={lst:dc-header}
+]{code/max_subarray.h}
+
+Listing~\ref{lst:dc-demo} runs the algorithm on
+the ten-minute traffic example.
+
+\lstinputlisting[
+    language=C++,
+    caption={Traffic example demonstration},
+    label={lst:dc-demo}
+]{code/dc_max_subarray.cpp}
+
+\subsection{Experimental Runtime Measurement}
+
+Listing~\ref{lst:dc-experiment} contains the C++
+code used to check correctness, generate random
+inputs, measure execution times, and calculate
+median running times.
+
+\lstinputlisting[
+    language=C++,
+    caption={Divide-and-conquer runtime benchmark},
+    label={lst:dc-experiment}
+]{code/dc_experiment.cpp}
+
+\subsection{Experimental Graph Generation}
+
+Listing~\ref{lst:dc-plot} contains the Python
+code used to compare measured execution times
+with theoretical $\Theta(n\log n)$ growth.
+
+\lstinputlisting[
+    language=Python,
+    caption={Python runtime graph generation},
+    label={lst:dc-plot}
+]{code/dc_plot_results.py}
