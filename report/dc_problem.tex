@@ -1,100 +1,50 @@
 \subsection{Real-World Problem Description}
 
-Signalized intersections are typically retimed
-based on when and how severely queues build up
-on their approaches. Traffic engineers
-commonly study queues using input--output
-(cumulative arrival and departure) analysis:
-the number of vehicles waiting on an approach
-grows when more vehicles arrive than the signal
-discharges, and shrinks otherwise
-\cite{daganzo1997, hcm2022}.
+Signalized intersections are typically retimed based on
+when and how severely queues build up on their
+approaches. Traffic engineers study queues with
+input--output (cumulative arrival and departure)
+analysis: the queue on an approach grows when more
+vehicles arrive than the signal discharges, and shrinks
+otherwise \cite{daganzo1997, hcm2022}. Detectors report,
+for every short time bin (e.g., one minute), how many
+vehicles arrived at and departed through the stop line,
+producing a long sequence of per-minute counts.
 
-Modern intersections are instrumented with
-vehicle detectors that report, for every short
-time bin (for example, one minute), how many
-vehicles arrived at the stop line and how many
-departed through it. Over days or weeks of
-operation this produces a long sequence of
-per-minute counts.
-
-A natural question for a traffic engineer is:
-\emph{during which continuous period did the
-queue on this approach grow the most?}
-This period is the worst congestion episode
-in the data. Identifying it tells the engineer
-when the current signal timing is least able to
-serve demand, and is therefore a candidate
-period for retiming or coordination
-\cite{fhwa2008}.
-
-The period of interest need not align with
-fixed boundaries such as the morning peak hour;
-it can start and end at any minute. Short
-intervals in which the queue partially drains
-may lie inside the worst episode, as long as
-the overall build-up across the period is
-maximal.
-
-This simplified model assumes that detector
-counts are accurate, that a single approach is
-studied independently, that time is divided
-into equal-length bins, and that the queue is
-not bounded by physical storage capacity.
-The model identifies the worst episode; it does
-not by itself prescribe a new signal plan.
+An engineer asks: \emph{during which continuous period
+did the queue on this approach grow the most?} This
+worst congestion episode shows when the current timing
+is least able to serve demand and is a candidate for
+retiming or coordination \cite{fhwa2008}. The period
+may start and end at any minute and may contain short
+intervals in which the queue partially drains, as long
+as the overall build-up is maximal. We assume accurate
+counts, a single approach studied independently,
+equal-length time bins, and no physical storage limit;
+the model identifies the worst episode but does not
+itself prescribe a new signal plan.
 
 \subsection{Mathematical Abstraction}
 
-Let the observation horizon consist of $n$
-consecutive minutes. For minute $i$, let
-$a_i$ be the number of arrivals and $d_i$ the
-number of departures. The net queue change in
-minute $i$ is
-
+For each of $n$ consecutive minutes, let $a_i$ and $d_i$
+be the arrivals and departures; the net queue change is
+$x_i = a_i - d_i \in \mathbb{Z}$, giving a sequence
+$X = \langle x_1, \ldots, x_n \rangle$ ($x_i > 0$: the
+queue grew; $x_i < 0$: it drained). The candidate
+periods form the set
 \[
-x_i = a_i - d_i \in \mathbb{Z}.
+\mathcal{I}_n = \{ [l, r] : 1 \le l \le r \le n \},
+\qquad |\mathcal{I}_n| = n(n+1)/2,
 \]
-
-The problem is therefore abstracted as a
-sequence
-
-\[
-X = \langle x_1, x_2, \ldots, x_n \rangle,
-\]
-
-where $x_i > 0$ means the queue grew and
-$x_i < 0$ means the queue drained.
-
-A candidate period is a contiguous index
-interval $[l, r]$ with $1 \le l \le r \le n$.
-Let
-
-\[
-\mathcal{I}_n = \{ [l, r] : 1 \le l \le r \le n \}
-\]
-
-be the set of all candidate periods, so
-$|\mathcal{I}_n| = n(n+1)/2$.
-
-The total queue build-up over a period is
-
-\[
-S(l, r) = \sum_{k=l}^{r} x_k ,
-\]
-
-which, under the input--output model, equals
-the difference between the queue length at the
-end of minute $r$ and at the start of minute $l$.
-
+and the build-up over a period is
+$S(l, r) = \sum_{k=l}^{r} x_k$, which under the
+input--output model equals the change in queue length
+from the start of minute $l$ to the end of minute $r$.
 The goal is to find
-
 \[
-[l^*, r^*] \in \arg\max_{[l,r] \in \mathcal{I}_n} S(l, r).
+[l^*, r^*] \in \arg\max_{[l,r] \in \mathcal{I}_n} S(l, r),
 \]
-
-This is the \emph{maximum subarray} problem
-\cite{bentley1984, clrs2009}. Periods are
-required to be non-empty; if every $x_i$ is
-negative, the answer is the single minute with
+the \emph{maximum subarray} problem
+\cite{bentley1984, clrs2009}. Periods are non-empty; if
+every $x_i < 0$, the answer is the single minute with
 the smallest drain.

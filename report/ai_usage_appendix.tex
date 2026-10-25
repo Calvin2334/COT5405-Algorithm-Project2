@@ -1,155 +1,337 @@
-
 \section{AI Tool Usage and Disclosure}
 
-\subsection{AI Tool Used}
+This appendix lists the AI tools, prompts, and results
+for both parts of the project. Each prompt is quoted
+exactly as typed, followed by a summary of the result.
 
-OpenAI ChatGPT was used during the development
-of the greedy traffic signal scheduling project.
+\subsection{Greedy Algorithm (OpenAI ChatGPT)}
 
-AI assistance included problem formulation,
-mathematical abstraction, greedy algorithm
-design, C++ implementation, debugging,
-correctness proofs, runtime analysis,
-experimental graph generation, and
-LaTeX report preparation.
+\noindent\textbf{Tool and use:} OpenAI ChatGPT assisted
+with problem formulation, mathematical abstraction,
+algorithm design, C++ implementation, debugging, the
+correctness proof, runtime analysis, graph generation,
+and LaTeX preparation.
 
-\subsection{Representative AI Interactions}
+\noindent\textbf{Verification:} The C++17 implementation
+was compiled and tested; seven input sizes from 1,000
+to 200,000 windows were each timed ten times, the
+medians were plotted with Python and Matplotlib, and
+the results were checked against the theoretical
+$O(n\log n)$ bound.
 
-The following examples summarize selected
-AI interactions during project development.
+\subsubsection{Original development prompts}
 
 \begin{enumerate}
 
-\item \textbf{Problem Formulation}
-
-Prompt:
-``what if i change it to the max amount of time
-you can have lights running at the same time
+\item \textbf{Problem selection.}
+\emph{Prompt:} ``what if i change it to the max amount
+of time you can have lights running at the same time
 to avoid cloging traffic''
+\emph{Result:} Discussed traffic signal coordination
+and proposed maximum-cardinality interval scheduling
+over preapproved, nonoverlapping green-light windows.
 
-Result:
-ChatGPT suggested modeling the problem as
-maximum-cardinality interval scheduling
-using preapproved green-light windows.
+\item \textbf{Greedy objective.}
+\emph{Prompt:} ``we want mutiple windos and by selecting
+one big one it doesnt match our greedy stratagy''
+\emph{Result:} Explained why maximizing the number of
+compatible windows differs from selecting the longest
+window.
 
-\item \textbf{Greedy Algorithm}
+\item \textbf{Greedy algorithm.}
+\emph{Prompt:} ``okay lets se''
+\emph{Result:} Explained the earliest-finish-time
+strategy and assisted with the C++ code.
 
-Prompt:
-``okay lets se''
+\item \textbf{Sorting.}
+\emph{Prompt:} ``so what we just did is sort the window
+sto get the correct windows or were doing that right
+nwo''
+\emph{Result:} Distinguished sorting by finishing time
+from the greedy selection step.
 
-Result:
-ChatGPT explained the earliest-finish-time
-greedy strategy and assisted with C++ code.
+\item \textbf{Scheduling accuracy.}
+\emph{Prompt:} ``what if the timeings off it willl throw
+everythingoff''
+\emph{Result:} Discussed timing assumptions and the
+limits of applying the simplified model to real
+signals.
 
-\item \textbf{Code Review}
+\item \textbf{Code review.}
+\emph{Prompt:} ``before i push it chekc my code correct
+what needs to be correctedso i know im pushing the full
+correct file''
+\emph{Result:} Reviewed correctness, initialization,
+and output formatting.
 
-Prompt:
-``before i push it chekc my code correct what
-needs to be correctedso i know im pushing
-the full correct file''
+\item \textbf{Experimental implementation.}
+\emph{Prompt:} ``give me the whole code''
+\emph{Result:} Provided a C++ benchmark for measuring
+the greedy algorithm's running time.
 
-Result:
-ChatGPT reviewed code correctness,
-initialization, and output formatting.
+\item \textbf{Benchmark debugging.}
+\emph{Prompt:} ``send me the updated experiment code so
+i can just paste itbecause imgetting errors''
+\emph{Result:} Corrected the benchmark, including
+timing and CSV output.
 
-\item \textbf{Runtime Experiments}
+\item \textbf{Experimental graph.}
+\emph{Prompt:} ``so run this python
+\texttt{Greedy/plot\_results.py}''
+\emph{Result:} Helped run the plotting script and
+compare measured times with theoretical growth.
 
-Prompt:
-``give me the whole code''
+\item \textbf{Correctness proof.}
+\emph{Prompt:} ``so show me exactly what i should
+write''
+\emph{Result:} Provided the exchange-argument proof in
+LaTeX.
 
-Result:
-ChatGPT provided C++ benchmarking
-assistance for measuring running time.
-
-\item \textbf{Graph Generation}
-
-Prompt:
-``so run this python Greedy/plot\_results.py''
-
-Result:
-ChatGPT assisted with executing the Python
-plotting script and generating the graph.
-
-\item \textbf{Correctness Proof}
-
-Prompt:
-``so show me exactly what i should write''
-
-Result:
-ChatGPT assisted with the exchange-argument
-correctness proof.
-
-\item \textbf{LaTeX Report}
-
-Prompt:
-``so write me the greedy\_runtime.text
+\item \textbf{LaTeX report.}
+\emph{Prompt:} ``so write me the greedy\_runtime.text
 and i thought therw was an ai usage apendix''
+\emph{Result:} Assisted with the runtime section,
+report structure, and formatting.
 
-Result:
-ChatGPT assisted with report structure,
-runtime analysis, and LaTeX formatting.
+\item \textbf{Progress review.}
+\emph{Prompt:} ``okay give me a recap on wat i justdid
+and a recap on what i did and need to do to complete
+this project''
+\emph{Result:} Summarized completed work and remaining
+report, experiment, and documentation tasks.
 
-\item \textbf{Revised Interaction 1}
-
-Topic:
-Problem selection and mathematical abstraction.
-
-Result:
-Defined candidate green-light windows,
-compatibility constraints, and the
-optimization objective.
-
-\item \textbf{Revised Interaction 2}
-
-Topic:
-Greedy algorithm and C++ implementation.
-
-Result:
-Provided pseudocode, C++17 implementation,
-and the example selecting windows 2, 3, and 5.
-
-\item \textbf{Revised Interaction 3}
-
-Topic:
-C++ code review and debugging.
-
-Result:
-Reviewed sorting, initialization,
-compatibility checks, and boundary cases.
+\item \textbf{AI documentation.}
+\emph{Prompt:} ``okay so what am i missing for the ai
+part like how do i complete it''
+\emph{Result:} Explained the requirement to record
+prompts, responses, and intermediate results in an
+appendix.
 
 \end{enumerate}
 
-\subsection{Development and Verification}
+\subsubsection{Later review and documentation prompts}
 
-The C++17 greedy implementation was
-compiled and tested.
+Seven additional ChatGPT interactions (October 19,
+2026) were used to review and document the greedy
+project after development.
 
-Seven experimental input sizes ranging
-from 1,000 to 200,000 windows were used.
+\begin{enumerate}
 
-Each input size was measured ten times,
-and median execution times were recorded.
+\item \textbf{Problem selection and abstraction.}
+\emph{Prompt:} ``I am completing a graduate-level
+Analysis of Algorithms project that requires a
+real-world application of a greedy algorithm. I want
+to investigate traffic signal scheduling to help avoid
+overlapping green-light opportunities and potentially
+reduce scheduling conflicts. Can you explain how to
+formulate a simplified traffic signal scheduling
+problem using interval scheduling? Define the candidate
+green-light windows, starting and finishing times,
+compatibility constraints, objective function,
+assumptions, and limitations. Clearly distinguish
+maximizing the number of compatible windows from
+minimizing actual traffic congestion.''
+\emph{Result:} Defined windows $w_i=(s_i,f_i)$, the
+compatibility condition $f_i \le s_j$, and the
+objective $\max|S|$; listed the model's assumptions;
+and explained that it maximizes compatible windows
+rather than minimizing congestion.
 
-Python and Matplotlib were used to
-generate the experimental runtime graph.
+\item \textbf{Greedy algorithm and C++ implementation.}
+\emph{Prompt:} ``For my COT5405 Analysis of Algorithms
+project, I modeled traffic signal scheduling as a
+maximum-cardinality interval scheduling problem. Each
+candidate green-light window has an ID, start time, and
+finish time. Explain the earliest-finish-time greedy
+algorithm step by step, provide pseudocode, and show a
+complete C++17 implementation using a struct, vector,
+and std::sort. Use the example windows (1,0,10),
+(2,2,5), (3,5,8), (4,7,12), and (5,8,14). Explain why
+the selected windows are 2, 3, and 5.''
+\emph{Result:} Provided pseudocode, a C++17
+implementation, a walkthrough selecting windows 2, 3,
+and 5, and an $O(n\log n)$ analysis.
 
-The measurements were consistent with
-the theoretical $O(n\log n)$ running time.
+\item \textbf{Code review and debugging.}
+\emph{Prompt:} ``I have written a C++17 greedy algorithm
+to select the maximum number of mutually compatible
+green-light windows. Review my implementation for
+correctness, compilation errors, sorting logic,
+boundary conditions, and output formatting. Explain
+every necessary correction and why it matters. Preserve
+my original program structure as much as possible
+instead of rewriting the entire implementation. Also
+identify useful test cases, including overlapping
+intervals, back-to-back intervals, empty input, and
+intervals with identical finishing times. Here is my
+implementation:'' [followed by the complete 25-line
+\texttt{greedy.cpp} program, omitted here for space]
+\emph{Result:} Confirmed the code was correct for the
+example; noted that initializing \texttt{lastFinish} to
+$-1$ assumes nonnegative start times and suggested a
+generalization; proposed edge-case tests.
 
-\subsection{Complete AI Interaction Records}
+\item \textbf{Experimental runtime analysis.}
+\emph{Prompt:} ``I need to experimentally verify the
+O(n log n) running-time complexity of my C++
+earliest-finish-time greedy interval scheduling
+algorithm. Help me design and implement a C++17
+benchmark that generates random green-light windows for
+input sizes 1,000, 5,000, 10,000, 25,000, 50,000,
+100,000, and 200,000. Use a fixed random seed for
+reproducibility, run 10 repetitions per input size,
+measure sorting and greedy selection using
+std::chrono::steady\_clock, exclude input generation
+from the timed section, compute median execution time
+in milliseconds, and export InputSize, MedianTimeMs, and
+NLogN to Greedy/results.csv. Explain compilation using
+g++ -std=c++17 -O2 and the limitations of runtime
+measurements.''
+\emph{Result:} Provided the benchmark in
+Listing~\ref{lst:experiment} (seed 42, median of ten
+runs, CSV export) and discussed measurement noise.
 
-The interactions listed above are
-representative examples, not the complete
-AI development history.
+\item \textbf{Runtime graph generation.}
+\emph{Prompt:} ``I have a CSV file at Greedy/results.csv
+containing the columns InputSize, MedianTimeMs, and
+NLogN from my C++ greedy algorithm benchmark. Show me
+how to write and execute Greedy/plot\_results.py using
+Python, csv.DictReader, and Matplotlib. Plot measured
+median execution time against input size and compare it
+with a scaled theoretical n log2(n) curve. Save the
+figure as Greedy/runtime\_graph.png. Explain the meaning
+of the graph, how it supports the theoretical runtime
+analysis, and how to diagnose incorrect CSV headers or
+missing files.''
+\emph{Result:} Provided the plotting script
+(Listing~\ref{lst:plot}), explained scaling the
+$n\log_2 n$ curve to the largest measurement, and
+described common file and header errors.
 
-The full original ChatGPT conversation
-and seven revised AI interactions have
-been preserved in the project repository.
+\item \textbf{Correctness proof.}
+\emph{Prompt:} ``I need a formal proof of correctness for
+the earliest-finish-time greedy algorithm used in my
+traffic signal scheduling project. The objective is to
+maximize the number of nonoverlapping candidate
+green-light windows, where each window has a start and
+finish time and two consecutive windows are compatible
+if the next starts at or after the previous finishes.
+Provide a clear theorem and an exchange-argument proof
+showing why replacing the first interval of an optimal
+schedule with the earliest-finishing interval preserves
+optimality. Explain why the argument can be applied
+repeatedly to the remaining intervals. Provide the
+proof in LaTeX and state its assumptions.''
+\emph{Result:} Gave a theorem and exchange-argument
+proof, completed by induction on the number of windows.
 
-The complete transcripts contain the
-original prompts, AI responses, code
-revisions, and intermediate results.
+\item \textbf{Report preparation and AI disclosure.}
+\emph{Prompt:} ``I am preparing a COT5405 algorithms
+group project report in Overleaf using the IEEE
+conference template. My portion covers greedy traffic
+signal window scheduling. Help me organize the report
+into a real-world problem description, mathematical
+abstraction, algorithm and pseudocode, correctness
+proof, theoretical O(n log n) analysis, empirical
+runtime table and graph, bibliography, and source-code
+appendix. Explain how to divide sections into separate
+LaTeX files using input commands, include a PNG figure,
+include C++ and Python code using the listings package,
+and use BibTeX. Also help me prepare a transparent AI-use
+appendix distinguishing exact original prompts and
+responses from summaries or newly generated
+interactions. My partner's divide-and-conquer section
+will be added later.''
+\emph{Result:} Proposed the IEEE report structure and
+\texttt{\textbackslash input} file layout, showed how to
+include figures, code listings, and BibTeX references,
+and advised keeping original and revised AI records
+separate.
 
-These records can be provided separately
-as supplementary documentation if
-the instructor permits that format.
+\end{enumerate}
+
+\subsection{Divide and Conquer (Claude)}
+
+\noindent\textbf{Tool and use:} Claude assisted
+with planning the divide-and-conquer
+maximum subarray algorithm and its benchmark, drafting
+the LaTeX sections, setting up the local LaTeX build,
+generating and explaining the runtime graphs, and
+condensing and formatting the report.
+
+\noindent\textbf{Verification:} The implementation was
+checked against an $O(n^2)$ brute-force search on 2,000
+random inputs and against an independent $O(n)$ scan on
+every benchmark input; the proof and runtime analysis
+were reviewed by hand.
+
+\begin{enumerate}
+
+\item \textbf{Planning.}
+\emph{Prompt:} ``he did all the greedy stuff so i have to
+do divide and conquer part. lets come up with a plan
+and then i will do the implementation''
+\emph{Result:} Confirmed the required technique was
+divide and conquer, explained the maximum subarray
+problem applied to intersection queue build-up, and
+then planned the following steps.
+
+\item \textbf{Viewing LaTeX.}
+\emph{Prompt:} ``how do i view latex?''
+\emph{Result:} Explained compiling with Overleaf
+(XeLaTeX) or locally with MiKTeX and LaTeX Workshop.
+
+\item \textbf{Overleaf timeout.}
+\emph{Prompt:} ``so how long do u suspect i wait til i
+can view it''
+\emph{Result:} Explained that the free-plan compile
+limit, caused by the verbatim transcript appendices,
+would not resolve by waiting.
+
+\item \textbf{Local build setup.}
+\emph{Prompt:} ``okay i have the extension and miktex
+installed, make the necessary code changes to make it
+all compatible and give me the steps to continue''
+\emph{Result:} Configured XeLaTeX fonts, editor build
+settings, and \texttt{.gitignore}, and compiled the
+report.
+
+\item \textbf{Formatting issue.}
+\emph{Prompt:} ``no formatting just stops afte rpage
+13''
+\emph{Result:} Identified the unformatted pages as the
+raw verbatim AI transcripts, not a build error.
+
+\item \textbf{Git workflow.}
+\emph{Prompt:} ``i dont know if i even want to push
+edits to the document right now if my parnter is going
+to edit it anyway. whats a good plan''
+\emph{Result:} Recommended pushing to a separate
+\texttt{divide-conquer} branch and merging later.
+
+\item \textbf{Runtime graphs.}
+\emph{Prompt:} ``can u explain to me the graphs im
+looking at and what normalized is and why we need it''
+\emph{Result:} Explained that plotting $T(n)/n$ against
+$\log_2 n$ separates $n\log n$ from linear growth.
+
+\item \textbf{Merging.}
+\emph{Prompt:} ``can u help me merge his changes with
+mine''
+\emph{Result:} Merged the partner's branch without
+conflicts and rebuilt the report.
+
+\item \textbf{Condensing the report.}
+\emph{Prompt:} ``do a pass where u clean it up and trim
+the bloat. obviously everything required by the spec
+must remain''
+\emph{Result:} Reduced the report from 32 to 9
+pages.
+
+\item \textbf{Checking the condensed report.}
+\emph{Prompt:} ``okay so none of the essential math or
+formulas or anything like that was deleted?''
+\emph{Result:} Compared the versions and listed the
+equations that were moved inline or rephrased.
+
+\end{enumerate}

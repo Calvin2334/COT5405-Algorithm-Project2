@@ -1,110 +1,72 @@
 \subsection{Proof of Correctness}
 
-Throughout, for $lo \le hi$ let
-$\mathcal{I}(lo, hi) = \{[l, r] : lo \le l \le r \le hi\}$
-denote the set of periods inside $[lo, hi]$.
+For $\mathit{lo} \le \mathit{hi}$, let
+$\mathcal{I}(\mathit{lo}, \mathit{hi}) = \{[l, r] : \mathit{lo} \le l \le r \le \mathit{hi}\}$.
 
 \medskip
-\noindent\textbf{Lemma 1 (Crossing Periods).}
-Let $lo \le mid < hi$. Then
-\textsc{Max-Crossing}$(X, lo, mid, hi)$ returns
-$(l', r', s')$ with $lo \le l' \le mid < r' \le hi$,
-$s' = S(l', r')$, and
-
-\[
-s' = \max \{ S(l, r) : lo \le l \le mid < r \le hi \}.
-\]
+\noindent\textbf{Lemma 1 (Crossing periods).}
+If $\mathit{lo} \le \mathit{mid} < \mathit{hi}$,
+\textsc{Max-Crossing}$(X, \mathit{lo}, \mathit{mid}, \mathit{hi})$
+returns a period $[l', r']$ with
+$\mathit{lo} \le l' \le \mathit{mid} < r' \le \mathit{hi}$
+and sum $s' = S(l', r')$ equal to
+$\max \{ S(l, r) : \mathit{lo} \le l \le \mathit{mid} < r \le \mathit{hi} \}$.
 
 \noindent\textbf{Proof.}
-Any crossing period $[l, r]$ splits into two
-non-empty parts, $[l, mid]$ and $[mid+1, r]$, so
-
-\[
-S(l, r) = S(l, mid) + S(mid+1, r).
-\]
-
-The first term depends only on $l$ and the second
-only on $r$, and every pair $(l, r)$ with
-$lo \le l \le mid$ and $mid+1 \le r \le hi$ is a
-valid crossing period. Hence the two terms can be
-maximized independently:
-
-\[
-\max_{l, r} S(l, r)
-= \max_{lo \le l \le mid} S(l, mid)
-+ \max_{mid < r \le hi} S(mid+1, r).
-\]
-
-In the first loop of \textsc{Max-Crossing}, the
-following invariant holds after processing index
-$i$: $sum = S(i, mid)$, and $leftSum = S(bestL, mid)$
-is the maximum of $S(l, mid)$ over $i \le l \le mid$.
-It holds after the first iteration ($i = mid$)
-because $leftSum$ starts at $-\infty$, and each later
-iteration adds $X[i]$ to $sum$ and updates $leftSum$
-only if the new suffix is larger. When the loop
-ends at $i = lo$, $leftSum$ is the maximum over all
-$lo \le l \le mid$. A symmetric invariant shows that
-$rightSum$ is the maximum of $S(mid+1, r)$ over
-$mid < r \le hi$. Therefore $s' = leftSum + rightSum$
-is the maximum crossing sum, attained by
-$[bestL, bestR]$. \hfill $\square$
+A crossing period splits into non-empty parts
+$[l, \mathit{mid}]$ and $[\mathit{mid}+1, r]$, so
+$S(l, r) = S(l, \mathit{mid}) + S(\mathit{mid}+1, r)$.
+The first term depends only on $l$, the second only on
+$r$, and every pair with $\mathit{lo} \le l \le \mathit{mid}$
+and $\mathit{mid} < r \le \mathit{hi}$ is a crossing
+period, so the two terms can be maximized independently.
+In the first loop, after processing index $i$,
+$\mathit{sum} = S(i, \mathit{mid})$ and
+$\mathit{leftSum} = S(\mathit{bestL}, \mathit{mid})$ is the
+maximum of $S(l, \mathit{mid})$ over
+$i \le l \le \mathit{mid}$. This invariant holds after
+the first iteration since $\mathit{leftSum}$ starts at
+$-\infty$, and each iteration adds $X[i]$ to
+$\mathit{sum}$ and updates $\mathit{leftSum}$ only on
+improvement; at termination ($i = \mathit{lo}$) it gives
+the best left part. A symmetric invariant holds for
+$\mathit{rightSum}$, so
+$s' = \mathit{leftSum} + \mathit{rightSum}$ is the
+maximum crossing sum, attained by
+$[\mathit{bestL}, \mathit{bestR}]$. \hfill $\square$
 
 \medskip
-\noindent\textbf{Theorem (Correctness of Max-Subarray).}
-For every $lo \le hi$,
-\textsc{Max-Subarray}$(X, lo, hi)$ returns
-$(l, r, s)$ with $[l, r] \in \mathcal{I}(lo, hi)$,
-$s = S(l, r)$, and
-
-\[
-s = \max_{[l', r'] \in \mathcal{I}(lo, hi)} S(l', r').
-\]
+\noindent\textbf{Theorem.}
+For every $\mathit{lo} \le \mathit{hi}$,
+\textsc{Max-Subarray}$(X, \mathit{lo}, \mathit{hi})$
+returns a period in $\mathcal{I}(\mathit{lo}, \mathit{hi})$
+whose reported sum equals its true sum and is maximum
+over $\mathcal{I}(\mathit{lo}, \mathit{hi})$.
 
 \noindent\textbf{Proof.}
-By strong induction on the length
-$m = hi - lo + 1$.
-
-\emph{Base case} ($m = 1$). Then
-$\mathcal{I}(lo, lo) = \{[lo, lo]\}$, and the
-algorithm returns $(lo, lo, X[lo])$, which is the
-only and therefore the best period.
-
-\emph{Inductive step} ($m \ge 2$). Assume the
-claim holds for all lengths less than $m$.
-Since $lo < hi$, $mid = \lfloor (lo+hi)/2 \rfloor$
-satisfies $lo \le mid < hi$, so both halves
-$[lo, mid]$ and $[mid+1, hi]$ are non-empty and
-have length strictly less than $m$.
-
-The set of periods partitions as
-
+By strong induction on $m = \mathit{hi} - \mathit{lo} + 1$.
+If $m = 1$, $[\mathit{lo}, \mathit{lo}]$ is the only
+period and is returned. If $m \ge 2$, then
+$\mathit{lo} \le \mathit{mid} < \mathit{hi}$, so both
+halves are non-empty and shorter than $m$. Every period
+in $\mathcal{I}(\mathit{lo}, \mathit{hi})$ satisfies
+exactly one of $r \le \mathit{mid}$, $l > \mathit{mid}$,
+or $l \le \mathit{mid} < r$, so
 \[
-\mathcal{I}(lo, hi) = \mathcal{I}(lo, mid)
-\,\cup\, \mathcal{I}(mid+1, hi)
-\,\cup\, \mathcal{C},
+\mathcal{I}(\mathit{lo}, \mathit{hi}) =
+\mathcal{I}(\mathit{lo}, \mathit{mid}) \cup
+\mathcal{I}(\mathit{mid}+1, \mathit{hi}) \cup \mathcal{C},
 \]
-
-where $\mathcal{C} = \{[l, r] : lo \le l \le mid < r \le hi\}$
-is the set of crossing periods. This holds because,
-for any $[l, r] \in \mathcal{I}(lo, hi)$, either
-$r \le mid$ (left), or $l > mid$ (right), or
-$l \le mid < r$ (crossing).
-
-By the inductive hypothesis, $L$ and $R$ are optimal
-over $\mathcal{I}(lo, mid)$ and $\mathcal{I}(mid+1, hi)$,
-respectively. By Lemma 1, $C$ is optimal over
-$\mathcal{C}$. The maximum over a union of sets equals
-the maximum of the maxima over each set, so the
-candidate among $L, R, C$ with the largest sum is
-optimal over $\mathcal{I}(lo, hi)$. Each of $L, R, C$
-is a valid period in $\mathcal{I}(lo, hi)$ whose
-reported sum equals its true sum, so the returned
-triple is also valid. \hfill $\square$
+where $\mathcal{C}$ is the set of crossing periods. By
+the inductive hypothesis $L$ and $R$ are optimal over
+the two halves, and by Lemma~1 $C$ is optimal over
+$\mathcal{C}$. The maximum over a union is the maximum
+of the maxima, so the best of $L, R, C$ is optimal, and
+each is a valid period with a correct sum.
+\hfill $\square$
 
 \medskip
-Applying the theorem with $lo = 1$ and $hi = n$
-shows that the algorithm returns a period of maximum
-total queue build-up over the whole observation
-horizon. The algorithm terminates because each
-recursive call is on a strictly shorter range.
+With $\mathit{lo} = 1$ and $\mathit{hi} = n$, the
+algorithm returns a period of maximum total queue
+build-up; it terminates because every recursive call is
+on a strictly shorter range.

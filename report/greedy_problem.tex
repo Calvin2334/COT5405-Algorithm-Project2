@@ -1,141 +1,39 @@
 \subsection{Real-World Problem Description}
 
-Traffic congestion is a common problem in urban
-areas, particularly at intersections controlled
-by traffic signals. Poorly coordinated traffic
-signals can cause vehicles to stop repeatedly,
-increase waiting times, and contribute to
-congestion along major roads.
+Traffic congestion is common at urban intersections
+controlled by traffic signals. Poorly coordinated
+signals cause vehicles to stop repeatedly, increase
+waiting times, and add to congestion along major
+roads, for example when one intersection releases
+vehicles that an intersection farther down the road
+cannot accommodate. Signal coordination synchronizes
+intersections to improve progression and reduce
+unnecessary stops and delays \cite{fhwa2008}.
 
-One issue occurs when traffic signals release
-vehicles from one intersection while another
-intersection farther down the road is unable
-to accommodate the incoming traffic.
-
-This problem motivated the investigation of
-traffic signal scheduling using a greedy
-algorithm.
-
-For this project, we consider a simplified
-traffic signal scheduling problem.
-
-A traffic management system is assumed to
-provide a collection of candidate green-light
-time windows for a particular traffic movement.
-
-Each window represents a time interval during
-which a green-light opportunity could be
-scheduled.
-
-The scheduling system must select a subset
-of these windows such that no two selected
-windows overlap.
-
-The objective is to maximize the total
-number of compatible green-light windows.
-
-This simplified model assumes that all
-candidate windows have equal importance,
-each window is indivisible, and the safety
-and feasibility of every candidate window
-have already been verified.
-
-Although real-world traffic signal
-coordination involves additional factors,
-including traffic volume, vehicle speeds,
-pedestrian crossings, and intersection
-capacity, this abstraction allows us
-to study an optimization problem that
-can be solved optimally using a
-greedy algorithm.
-
-Traffic signal coordination is used to synchronize
-intersections to improve traffic progression and
-reduce unnecessary stops and delays \cite{fhwa2008}.
+We consider a simplified scheduling problem. A traffic
+management system provides a collection of candidate
+green-light time windows for a traffic movement, each
+an interval during which a green-light opportunity
+could be scheduled. The system must select a subset of
+windows such that no two selected windows overlap,
+maximizing the number of selected windows. We assume
+all windows have equal importance, each window is
+indivisible, and the safety and feasibility of every
+window have already been verified. Real coordination
+also involves traffic volume, vehicle speeds,
+pedestrian crossings, and intersection capacity; the
+abstraction isolates an optimization problem that a
+greedy algorithm solves optimally.
 
 \subsection{Mathematical Abstraction}
 
-The traffic signal scheduling problem
-is modeled as a set of time intervals.
-
-Let
-
-\[
-W = \{w_1, w_2, \ldots, w_n\}
-\]
-
-represent the set of candidate green-light
-windows.
-
-Each window is represented as
-
-\[
-w_i = (s_i, f_i)
-\]
-
-where:
-
-\begin{itemize}
-    \item $s_i$ represents the starting
-    time of window $i$.
-
-    \item $f_i$ represents the finishing
-    time of window $i$.
-
-    \item $n$ represents the total number
-    of candidate windows.
-\end{itemize}
-
-Every window must satisfy
-
-\[
-s_i < f_i.
-\]
-
-Two windows are compatible when they
-do not overlap.
-
-For two windows $w_i$ and $w_j$,
-where $w_i$ is scheduled before $w_j$,
-compatibility requires
-
-\[
-f_i \leq s_j.
-\]
-
-This means that the next window may
-begin only after the previous
-selected window has finished.
-
-The goal is to find a subset
-
-\[
-S \subseteq W
-\]
-
-that maximizes the number of
-selected windows:
-
-\[
-\max |S|
-\]
-
-subject to the constraint that
-all selected windows are
-mutually compatible.
-
-This is a maximum-cardinality
-interval scheduling problem.
-
-The greedy algorithm solves this
-problem by sorting candidate
-windows according to their
-finishing times and repeatedly
-selecting the earliest-finishing
-window that does not conflict
-with previously selected windows.
-
-The result is an optimal subset
-containing the maximum possible
-number of compatible green-light
-windows under the stated assumptions.
+The candidate windows form a set of time intervals
+$W = \{w_1, \ldots, w_n\}$ with $w_i = (s_i, f_i)$,
+where $s_i < f_i$ are the start and finish times of
+window $i$. Two windows $w_i$ and $w_j$, with $w_i$
+scheduled first, are \emph{compatible} if they do not
+overlap, i.e., $f_i \leq s_j$: the next window may
+begin only after the previous one finishes. The goal
+is to find a subset $S \subseteq W$ of mutually
+compatible windows maximizing $|S|$. This is the
+maximum-cardinality interval scheduling problem.

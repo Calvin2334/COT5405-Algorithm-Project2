@@ -7,13 +7,11 @@
 \usepackage{xcolor}
 \usepackage{url}
 \usepackage{fontspec}
-\usepackage{fvextra}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{newunicodechar}
+\usepackage{needspace}
 
-% Times-compatible main font and a monospace font with
-% box-drawing characters used in the AI transcripts
+% Times-compatible main font and a monospace font for code
 \setmainfont{texgyretermes}[
     Extension=.otf,
     UprightFont=*-regular,
@@ -29,10 +27,6 @@
     Scale=MatchLowercase
 ]
 
-% Emoji in the transcripts that no installed font provides
-\newunicodechar{✅}{[OK]}
-\newunicodechar{❌}{[X]}
-
 % Source code formatting
 \lstset{
     basicstyle=\ttfamily\scriptsize,
@@ -41,7 +35,12 @@
     frame=single,
     numbers=left,
     numberstyle=\tiny,
-    numbersep=4pt,
+    numbersep=6pt,
+    xleftmargin=2em,
+    framexleftmargin=0pt,
+    aboveskip=0.8em,
+    belowskip=0.8em,
+    belowcaptionskip=0.5em,
     showstringspaces=false,
     columns=fullflexible,
     keepspaces=true
@@ -52,7 +51,9 @@
 Divide-and-Conquer Algorithms}
 
 \author{
-    \IEEEauthorblockN{Group Project}
+    \IEEEauthorblockN{Jorge Hernandez}
+    \and
+    \IEEEauthorblockN{Calvin Claiborne}
 }
 
 \begin{document}
@@ -62,16 +63,12 @@ Divide-and-Conquer Algorithms}
 % Introduction
 \section{Introduction}
 
-This report examines the application of
-greedy and divide-and-conquer algorithms
-to real-world computational problems.
-
-Both problems are drawn from traffic signal
-operations. The greedy section selects a maximum
-set of compatible green-light windows, and the
-divide-and-conquer section identifies the period
-of worst queue build-up on an intersection
-approach from detector counts.
+This report applies greedy and divide-and-conquer
+algorithms to two problems from traffic signal
+operations: selecting a maximum set of compatible
+green-light windows (Section~II) and identifying the
+period of worst queue build-up on an intersection
+approach from detector counts (Section~III).
 
 % =====================================
 % GREEDY ALGORITHM
@@ -98,6 +95,25 @@ Worst Queue Build-Up at an Intersection}
 \input{dc_runtime}
 
 % =====================================
+% CONCLUSION
+% =====================================
+
+\section{Conclusion}
+
+We modeled two traffic signal problems as classical
+algorithmic problems: selecting compatible green-light
+windows as interval scheduling, solved optimally by an
+earliest-finish-time greedy algorithm in $O(n\log n)$
+time, and locating the worst queue build-up as a
+maximum subarray, solved by divide and conquer in
+$\Theta(n\log n)$ time. Both algorithms were proved
+correct, and C++ experiments confirmed the predicted
+growth rates. The models are deliberately simplified,
+but they show how standard algorithmic techniques can
+give provably correct answers to concrete
+traffic-operations questions.
+
+% =====================================
 % REFERENCES
 % =====================================
 
@@ -116,13 +132,7 @@ Worst Queue Build-Up at an Intersection}
 % Divide-and-conquer algorithm and experiment code
 \input{dc_code_appendix}
 
-% AI disclosure
+% AI tools, prompts, and results for both sections
 \input{ai_usage_appendix}
-
-% Complete original ChatGPT conversation
-\input{original_ai_development_appendix}
-
-% Seven revised AI interactions
-\input{revised_ai_interactions}
 
 \end{document}

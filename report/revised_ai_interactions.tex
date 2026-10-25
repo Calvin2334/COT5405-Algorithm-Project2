@@ -1,80 +1,141 @@
-% Complete seven revised AI interactions
-
-\clearpage
-
 \section{Revised AI Interactions}
 
-This appendix contains seven additional
-ChatGPT interactions generated during
-the later review and documentation of
-the greedy scheduling project.
+Seven additional ChatGPT interactions (October 19,
+2026) were used to review and document the greedy
+project. Each entry gives the exact prompt and a
+summary of the response.
 
-Each transcript includes the recorded
-user prompt and ChatGPT response.
+\begin{enumerate}
 
-These interactions are separate from
-the original project-development
-conversation in the preceding appendix.
+\item \textbf{Problem selection and abstraction.}
+\emph{Prompt:} ``I am completing a graduate-level
+Analysis of Algorithms project that requires a
+real-world application of a greedy algorithm. I want
+to investigate traffic signal scheduling to help avoid
+overlapping green-light opportunities and potentially
+reduce scheduling conflicts. Can you explain how to
+formulate a simplified traffic signal scheduling
+problem using interval scheduling? Define the candidate
+green-light windows, starting and finishing times,
+compatibility constraints, objective function,
+assumptions, and limitations. Clearly distinguish
+maximizing the number of compatible windows from
+minimizing actual traffic congestion.''
+\emph{Result:} Defined windows $w_i=(s_i,f_i)$, the
+compatibility condition $f_i \le s_j$, and the
+objective $\max|S|$; listed the model's assumptions;
+and explained that it maximizes compatible windows
+rather than minimizing congestion.
 
-\subsection{Interaction 1:
-Problem Selection and Abstraction}
+\item \textbf{Greedy algorithm and C++ implementation.}
+\emph{Prompt:} ``For my COT5405 Analysis of Algorithms
+project, I modeled traffic signal scheduling as a
+maximum-cardinality interval scheduling problem. Each
+candidate green-light window has an ID, start time, and
+finish time. Explain the earliest-finish-time greedy
+algorithm step by step, provide pseudocode, and show a
+complete C++17 implementation using a struct, vector,
+and std::sort. Use the example windows (1,0,10),
+(2,2,5), (3,5,8), (4,7,12), and (5,8,14). Explain why
+the selected windows are 2, 3, and 5.''
+\emph{Result:} Provided pseudocode, a C++17
+implementation, a walkthrough selecting windows 2, 3,
+and 5, and an $O(n\log n)$ analysis.
 
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_01.txt}
+\item \textbf{Code review and debugging.}
+\emph{Prompt:} ``I have written a C++17 greedy algorithm
+to select the maximum number of mutually compatible
+green-light windows. Review my implementation for
+correctness, compilation errors, sorting logic,
+boundary conditions, and output formatting. Explain
+every necessary correction and why it matters. Preserve
+my original program structure as much as possible
+instead of rewriting the entire implementation. Also
+identify useful test cases, including overlapping
+intervals, back-to-back intervals, empty input, and
+intervals with identical finishing times. Here is my
+implementation:'' [followed by the complete 25-line
+\texttt{greedy.cpp} program, omitted here for space]
+\emph{Result:} Confirmed the code was correct for the
+example; noted that initializing \texttt{lastFinish} to
+$-1$ assumes nonnegative start times and suggested a
+generalization; proposed edge-case tests.
 
-\subsection{Interaction 2:
-Greedy Algorithm Implementation}
+\item \textbf{Experimental runtime analysis.}
+\emph{Prompt:} ``I need to experimentally verify the
+O(n log n) running-time complexity of my C++
+earliest-finish-time greedy interval scheduling
+algorithm. Help me design and implement a C++17
+benchmark that generates random green-light windows for
+input sizes 1,000, 5,000, 10,000, 25,000, 50,000,
+100,000, and 200,000. Use a fixed random seed for
+reproducibility, run 10 repetitions per input size,
+measure sorting and greedy selection using
+std::chrono::steady\_clock, exclude input generation
+from the timed section, compute median execution time
+in milliseconds, and export InputSize, MedianTimeMs, and
+NLogN to Greedy/results.csv. Explain compilation using
+g++ -std=c++17 -O2 and the limitations of runtime
+measurements.''
+\emph{Result:} Provided the benchmark in
+Listing~\ref{lst:experiment} (seed 42, median of ten
+runs, CSV export) and discussed measurement noise.
 
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_02.txt}
+\item \textbf{Runtime graph generation.}
+\emph{Prompt:} ``I have a CSV file at Greedy/results.csv
+containing the columns InputSize, MedianTimeMs, and
+NLogN from my C++ greedy algorithm benchmark. Show me
+how to write and execute Greedy/plot\_results.py using
+Python, csv.DictReader, and Matplotlib. Plot measured
+median execution time against input size and compare it
+with a scaled theoretical n log2(n) curve. Save the
+figure as Greedy/runtime\_graph.png. Explain the meaning
+of the graph, how it supports the theoretical runtime
+analysis, and how to diagnose incorrect CSV headers or
+missing files.''
+\emph{Result:} Provided the plotting script
+(Listing~\ref{lst:plot}), explained scaling the
+$n\log_2 n$ curve to the largest measurement, and
+described common file and header errors.
 
-\subsection{Interaction 3:
-Code Review and Debugging}
+\item \textbf{Correctness proof.}
+\emph{Prompt:} ``I need a formal proof of correctness for
+the earliest-finish-time greedy algorithm used in my
+traffic signal scheduling project. The objective is to
+maximize the number of nonoverlapping candidate
+green-light windows, where each window has a start and
+finish time and two consecutive windows are compatible
+if the next starts at or after the previous finishes.
+Provide a clear theorem and an exchange-argument proof
+showing why replacing the first interval of an optimal
+schedule with the earliest-finishing interval preserves
+optimality. Explain why the argument can be applied
+repeatedly to the remaining intervals. Provide the
+proof in LaTeX and state its assumptions.''
+\emph{Result:} Gave a theorem and exchange-argument
+proof, completed by induction on the number of windows.
 
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_03.txt}
+\item \textbf{Report preparation and AI disclosure.}
+\emph{Prompt:} ``I am preparing a COT5405 algorithms
+group project report in Overleaf using the IEEE
+conference template. My portion covers greedy traffic
+signal window scheduling. Help me organize the report
+into a real-world problem description, mathematical
+abstraction, algorithm and pseudocode, correctness
+proof, theoretical O(n log n) analysis, empirical
+runtime table and graph, bibliography, and source-code
+appendix. Explain how to divide sections into separate
+LaTeX files using input commands, include a PNG figure,
+include C++ and Python code using the listings package,
+and use BibTeX. Also help me prepare a transparent AI-use
+appendix distinguishing exact original prompts and
+responses from summaries or newly generated
+interactions. My partner's divide-and-conquer section
+will be added later.''
+\emph{Result:} Proposed the IEEE report structure and
+\texttt{\textbackslash input} file layout, showed how to
+include figures, code listings, and BibTeX references,
+and advised keeping original and revised AI records
+separate.
 
-\subsection{Interaction 4:
-Experimental Runtime Analysis}
-
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_04.txt}
-
-\subsection{Interaction 5:
-Experimental Graph Generation}
-
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_05.txt}
-
-\subsection{Interaction 6:
-Correctness Proof}
-
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_06.txt}
-
-\subsection{Interaction 7:
-Report Preparation and Review}
-
-\VerbatimInput[
-    fontsize=\scriptsize,
-    breaklines=true,
-    breakanywhere=true
-]{revised_ai_07.txt}
+\end{enumerate}
